@@ -1,0 +1,55 @@
+<launch>
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <env name="GAZEBO_RESOURCE_PATH" value="$(find ros_test)"/>
+        <env name="GAZEBO_MODEL_PATH" value="$(find ros_test)/models"/>
+        <arg name="world_name" value="$(find ros_test)/worlds/ros_test.world"/>
+        <arg name="paused" value="true"/>
+        <arg name="use_sim_time" value="true"/>
+        <arg name="gui" value="true"/>
+        <arg name="headless" value="false"/>
+        <arg name="debug" value="false"/>
+    </include>
+    
+<!--    <include file="$(find ros_test)/launch/robot.launch">
+        <arg name="init_pose" value="-x 0.0 -y 0.0 -z 1.0 -R 0.0 -P 0.0 -Y 0.0" />
+    </include>
+-->
+    <!--Args-->
+    <arg name="input" default=":default"/>
+    <arg name="hmm" default=":default" />
+    <arg name="dict" default="/home/francisco/openrobotics_ws/src/ros_test/asr/voice_cmd.dic"/>
+    <arg name="kws" default="/home/francisco/openrobotics_ws/src/ros_test/asr/voice_cmd.kwlist"/>
+    <arg name="keyphrase" default=":default"/>
+    <arg name="threshold" default=":default"/>
+
+    <!--Turtlebot Parameters-->
+    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_burger.urdf.xacro" />
+
+    <!--Turtlebot Node-->
+    <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" args="-unpause -urdf -model turtlebot3_burger -x 0.0 -y 0.0 -z 0.1 -param robot_description" />
+
+    <!--Audio Input Nodes -->
+    <node
+        name="audio_control"
+        pkg="pocketsphinx"
+        type="send_audio.py"
+        output="screen"
+        >
+        <param name="input" value="$(arg input)"/>
+    </node>
+
+    <!--KWS Node-->
+    <node name="kws_control" pkg="pocketsphinx" type="kws_test.py" output="screen"
+        >
+        <param name="hmm" value="$(arg hmm)"/>
+        <param name="dict" value="$(arg dict)"/>
+        <param name="kws" value="$(arg kws)"/>
+        <param name="keyphrase" value="$(arg keyphrase)"/>
+        <param name="threshold" value="$(arg threshold)"/>
+    </node>
+
+    <!--Voice Controller Node-->
+    <node name="voice_controller" pkg="ros_test" type="voice_control.py">
+    </node>
+
+</launch>

@@ -1,0 +1,12 @@
+material picture_frame{
+    technique
+    {
+        pass
+        {
+            texture_unit
+            {
+                texture bill_gates.jpg
+            }
+        }   
+    }
+}

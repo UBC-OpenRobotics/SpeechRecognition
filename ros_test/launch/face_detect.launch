@@ -1,0 +1,25 @@
+<launch>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+  	<env name="GAZEBO_RESOURCE_PATH" value="$(find ros_test)"/>
+  	<env name="GAZEBO_MODEL_PATH" value="$(find ros_test)/models"/>
+  	<arg name="world_name" value="$(find ros_test)/worlds/ros_test.world"/>
+    <arg name="paused" value="true"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+ 	<include file="$(find ros_test)/launch/robot.launch">
+		<arg name="init_pose" value="-x 0.0 -y 0.0 -z 1.0 -R 0.0 -P 0.0 -Y 0.0" />
+	</include>
+
+ 	<!--<node pkg="ros_test" type="controller.py" name="controller" output="screen">
+ 	</node>
+-->
+  <node pkg="ros_test" type="face_detection.py" name="face_detection" output="screen">
+  </node>
+  <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop" output="screen">
+  </node>
+
+</launch>
