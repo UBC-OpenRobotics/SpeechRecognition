@@ -17,8 +17,8 @@
     <!--Args-->
     <arg name="input" default=":default"/>
     <arg name="hmm" default=":default" />
-    <arg name="dict" default="/home/francisco/openrobotics_ws/src/ros_test/asr/voice_cmd.dic"/>
-    <arg name="kws" default="/home/francisco/openrobotics_ws/src/ros_test/asr/voice_cmd.kwlist"/>
+    <arg name="dict" default="$(find ros_test)/asr/voice_cmd.dic"/>
+    <arg name="kws" default="$(find ros_test)/asr/voice_cmd.kwlist"/>
     <arg name="keyphrase" default=":default"/>
     <arg name="threshold" default=":default"/>
 
