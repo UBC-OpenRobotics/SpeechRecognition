@@ -1,5 +1,5 @@
 # SpeechRecognition
-OpenRobotics development for RoboCup @ Home Education SPeech recognition and synthesis tasks
+OpenRobotics development for RoboCup @ Home Education Speech recognition and Synthesis tasks
 
 ## Setting up the Workspace
 SpeechRecognition is not a workspace, it is a package, so it requires a workspace.
