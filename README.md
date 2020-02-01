@@ -50,3 +50,34 @@ sudo apt-get install libpulse-dev
 You can download the language model from [here](https://sourceforge.net/projects/cmusphinx/files/Acoustic%20and%20Language%20Models/Archive/US%20English%20HUB4WSJ%20Acoustic%20Model/)
 
 Then you need to place its contents in `/usr/local/share/pocketsphinx/model/en-us/en-us`
+
+## ASR Modes
+
+All of the ASR configuration files can be found in `/SpeechRecognition/ros_test/asr`.
+
+There are two modes of operation - *Keyword Spotting* (KWS) and *Language Model* (LM).
+
+### KWS
+
+Keyword spotting tries to detect specific keywords or phrases, without imposing any type of grammer rules ontop.
+Utilizing keyword spotting requires a .dic file and a .kwslist file.
+
+The dictionary file is a basic text file that contains all the keywords and their phonetic pronunciation, for instance:
+
+```
+BACK	B AE K
+FORWARD	F AO R W ER D
+FULL	F UH L
+```
+
+These files can be generated [here](http://www.speech.cs.cmu.edu/tools/lextool.html) . 
+
+The .kwslist file has each keyword and a certain threshold, more or less corresponding to the length of the word or phrase, as follows:
+
+```
+BACK /1e-9/
+FORWARD /1e-25/
+FULL SPEED /1e-20/
+```
+
+
