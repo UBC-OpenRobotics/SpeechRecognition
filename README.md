@@ -49,7 +49,7 @@ sudo apt-get install libpulse-dev
 
 You can download the language model from [here](https://sourceforge.net/projects/cmusphinx/files/Acoustic%20and%20Language%20Models/Archive/US%20English%20HUB4WSJ%20Acoustic%20Model/)
 
-Then you need to place its contents in `/usr/local/share/pocketsphinx/model/en-us/en-us`
+Then you need to place its contents in `/usr/local/share/pocketsphinx/model/en-us/en-us` . Most likely, these folders dont exist, in which case you should just create them `cd /usr/local/share ; sudo mkdir -p pocketsphinx/model/en-us/en-us`
 
 ## ASR Modes
 
