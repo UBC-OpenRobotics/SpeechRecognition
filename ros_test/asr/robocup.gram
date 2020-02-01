@@ -1,0 +1,19 @@
+#JSGF V1.0;
+
+/**
+ * JSGF Grammar similar to kws example
+ */
+
+grammar robocup;
+
+
+public <rule> = [<greetings>] [<names>] [<actions>] [<names>] [<objects>];
+
+<greetings> = HELLO MY NAME IS | MY NAME IS
+
+<names> = ME | ALEX | CHARLIE CLEMENT ELIZABETH | FRANCIS | FRANCISCO | JAMES | JENNIFER | JOHN | LINDA | MARY | MICHAEL | NICK | OSMANN | PATRICIA | ROBERT | ROBIN | SIMAR | SKYLER | WILLIAM
+
+<objects> = THE APPLE | THE BAG | THE BASKET | THE BOWL | THE CEREAL | THE SPONGE | THE SPOON | THE SPRITE | THE TRAY | THE SAUSAGES | THE PRINGLES | THE PAPRIKA | THE NOODLES | THE ORANGE | THE JUICE | THE KNIFE | THE GLASS | THE GRAPE | THE FORK | THE CLOTH | THE COKE | THE CRACKERS | THE CUP | THE DISH 
+
+<actions> = BRING ME | FIND | MEET | MEET
+
