@@ -82,7 +82,7 @@ You can download the language model from [here](https://sourceforge.net/projects
 
 Then you need to place its contents in `/usr/local/share/pocketsphinx/model/en-us/en-us` . Most likely, these folders dont exist, in which case you should just create them `cd /usr/local/share ; sudo mkdir -p pocketsphinx/model/en-us/en-us`
 
-You can extract the tarball using `sudo tar -xzvf hub4wsj_sc_8k.tar.gz`
+You can extract the tarball using `sudo tar -xzvf hub4wsj_sc_8k.tar.gz`. Ensure that the contents of the folder hub4wsj_sc_8k are copied or moved to `/usr/local/share/pocketsphinx/model/en-us/en-us`
 
 
 ## ASR Modes
