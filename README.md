@@ -80,4 +80,29 @@ FORWARD /1e-25/
 FULL SPEED /1e-20/
 ```
 
+### LM
+
+Language model mode additionally imposes a grammer. To utilize this mode, .dic, .lm and .gram files are needed.
+
+The dictionary file is the same as in KWS mode.
+
+The .lm file can be generated, along with the .dic file, from a corpus of text, using [this tool](http://www.speech.cs.cmu.edu/tools/lmtool-new.html)
+
+Finally, the .gram file specifies the grammer to be imposed. For instance, if the commands we are expecting are always an action followed by an object or person and then a location, it might look like:
+
+```
+public <rule> = <actions> [<objects>] [<names>] [<locations>];
+
+<actions> = MOVE | STOP | GET | GIVE
+
+<objects> = BOWL | GLASS
+
+<names> = JOE | JOEBOB
+
+<locations> = KITCHEN | BEDROOM
+
+```
+
+
+
 
