@@ -10,15 +10,36 @@
         <arg name="debug" value="false"/>
     </include>
 
+
+    <!--Args-->
+    <arg name="input" default=":default"/>
+    <arg name="hmm" default=":default" />
+    <arg name="dict" default="$(find ros_test)/asr/robocup.dic"/>
+    <arg name="lm" default="$(find ros_test)/asr/robocup.lm"/>
+    <arg name="gram" default=":default"/>
+    <arg name="grammar" default="$(find ros_test)/asr/robocup.gram"/>
+    <arg name="rule" default=":default"/>
+
     <!--Turtlebot Parameters-->
     <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_burger.urdf.xacro" />
 
     <!--Turtlebot Node-->
     <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" args="-unpause -urdf -model turtlebot3_burger -x 0.0 -y 0.0 -z 0.1 -param robot_description" />
 
-    <!-- Recognizer Node-->
-    <node name="recognizer" pkg="pocketsphinx" type="recognizer.py" output="screen">
-        <param name="lm" value="$(find ros_test)/asr/robocup.lm"/>
+    <!--LM Node-->
+    <node name="asr_control" pkg="pocketsphinx" type="asr_test.py" output="screen">
+        <remap from="jsgf_audio" to="sphinx_audio" />
+        <param name="lm" value="$(arg lm)"/>
+        <param name="dict" value="$(arg dict)"/>
+        <param name="hmm" value="$(arg hmm)"/>
+        <param name="gram" value="$(arg gram)"/>
+        <param name="grammar" value="$(arg grammar)"/>
+        <param name="rule" value="$(arg rule)"/>
+    </node>
+
+    <!--Audio Input Nodes -->
+    <node name="audio_control" pkg="pocketsphinx" type="send_audio.py">
+        <param name="input" value="$(arg input)"/>
     </node>
 
 </launch>
