@@ -50,27 +50,3 @@ sudo apt-get install libpulse-dev
 You can download the language model from [here](https://sourceforge.net/projects/cmusphinx/files/Acoustic%20and%20Language%20Models/Archive/US%20English%20HUB4WSJ%20Acoustic%20Model/)
 
 Then you need to place its contents in `/usr/local/share/pocketsphinx/model/en-us/en-us`
-
-## Installing PyGTK and Pygst
-The recognizer.py script in pocketsphinx requires pygtk and pygst installed, however a simple
-
-`pip install PyGTK`
-
-will yield,
-```
-Complete output (4 lines):
-    ********************************************************************
-    * Building PyGTK using distutils is only supported on windows. *
-    * To build PyGTK in a supported way, read the INSTALL file.    *
-    ********************************************************************
-```
-So, instead, use:
-
-`sudo apt-get install python-gtk2`
-
-Similarly,
-```
-sudo apt-get install python-gst-1.0
-sudo apt-get install python-gst-1.0-dbg
-sudo apt-get install python-gst0.10
-```
