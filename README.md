@@ -4,9 +4,11 @@ OpenRobotics development for RoboCup @ Home Education Speech recognition and Syn
 ## Setting up the Workspace
 SpeechRecognition is not a workspace, it is a package, so it requires a workspace.
 To setup a catkin workspace, 
-`mkdir -p ~/catkin_ws/src
+```
+mkdir -p ~/catkin_ws/src
 cd catkin_ws
-catkin_make`
+catkin_make
+```
 
 ## Cloning and Catkin_make
 After setting up a workspace, run
@@ -45,6 +47,35 @@ If PocketSphinx isn't installing correctly, try running:
 pip install --upgrade setuptools
 sudo apt-get install libpulse-dev
 ```
+## Installing Turtlebot3
+
+Installing the turtlebot3 package requires 3 seperate repositories (at least to work in Gazebo). I sugggest creating a turtlebot3_ws, as follows,
+
+```
+cd ~/catkin_ws/src
+mkdir -p turtlebot3_ws/src
+cd turtlebot3_ws
+catkin_make
+```
+
+After that, 
+
+```
+cd ~/catkin_ws/src/turtlebot3_ws/src
+git clone https://github.com/ROBOTIS-GIT/turtlebot3.git
+git clone https://github.com/ROBOTIS-GIT/turtlebot3_msgs.git
+git clone https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git
+
+```
+Then, we require a catkin_make in our root workspace,
+
+```
+cd ~/catkin_ws
+catkin_make
+```
+
+Now, you should have access to turtlebot3 in ROS and Gazebo
+
 ## Getting the language model
 
 You can download the language model from [here](https://sourceforge.net/projects/cmusphinx/files/Acoustic%20and%20Language%20Models/Archive/US%20English%20HUB4WSJ%20Acoustic%20Model/)
