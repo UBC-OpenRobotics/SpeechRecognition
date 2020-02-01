@@ -106,6 +106,24 @@ public <rule> = <actions> [<objects>] [<names>] [<locations>];
 
 ```
 
+## Runnning ASR in ROS
+
+So far, two nodes have been made that can be run. One is a KWS mode that controls a turtlebot in Gazebo, and the other is a LM node that just recognizes sentences from a corpus of text.
+
+To run these, make sure you source the `setup.bash` file in the root directory of your workspace, ie,
+
+```
+cd catkin_ws/devel
+source setup.bash
+```
+
+Then, you can run,
+
+`roslaunch ros_test asr_lm.launch`
+
+or
+
+`roslaunch ros_test asr_kws.launch`
 
 
 
