@@ -1,0 +1,24 @@
+<launch>
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <env name="GAZEBO_RESOURCE_PATH" value="$(find ros_test)"/>
+        <env name="GAZEBO_MODEL_PATH" value="$(find ros_test)/models"/>
+        <arg name="world_name" value="$(find ros_test)/worlds/ros_test.world"/>
+        <arg name="paused" value="true"/>
+        <arg name="use_sim_time" value="true"/>
+        <arg name="gui" value="true"/>
+        <arg name="headless" value="false"/>
+        <arg name="debug" value="false"/>
+    </include>
+
+    <!--Turtlebot Parameters-->
+    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_burger.urdf.xacro" />
+
+    <!--Turtlebot Node-->
+    <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" args="-unpause -urdf -model turtlebot3_burger -x 0.0 -y 0.0 -z 0.1 -param robot_description" />
+
+    <!-- Recognizer Node-->
+    <node name="recognizer" pkg="pocketsphinx" type="recognizer.py" output="screen">
+        <param name="lm" value="$(find ros_test)/asr/robocup.lm"/>
+    </node>
+
+</launch>
