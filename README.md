@@ -20,39 +20,50 @@ Then,
 catkin_make`
 
 ## Installing Pocketsphinx
-`sudo apt-get install python-pip python-dev build-essential`
-
-`sudo pip install --upgrade pip`
-
-`sudo apt-get istall libasound-dev`
-
-`sudo apt-get install python-pyaudio`
-
-`sudo pip install pyaudio`
-
-`sudo apt-get install swig`
-
-`sudo pip install pocketsphinx`
+```
+sudo apt-get install python-pip python-dev build-essential
+sudo pip install --upgrade pip
+sudo apt-get istall libasound-dev
+sudo apt-get install python-pyaudio
+sudo pip install pyaudio
+sudo apt-get install swig
+sudo pip install pocketsphinx
+```
 
 Then, to install the ROS package and wrapper,
-
-`cd ~/catkin_ws/src`
-
-`git clone https://github.com/Pankaj-Baranwal/pocketsphinx`
-
-`cd ~/catkin_ws`
-
-`catkin_make`
+```
+cd ~/catkin_ws/src
+git clone https://github.com/Pankaj-Baranwal/pocketsphinx
+cd ~/catkin_ws
+catkin_make
+```
 
 
 If PocketSphinx isn't installing correctly, try running:
 
-`pip install --upgrade setuptools`
- 
-`sudo apt-get install libpulse-dev`
+```
+pip install --upgrade setuptools
+sudo apt-get install libpulse-dev
+```
 ## Getting the language model
 
 You can download the language model from [here](https://sourceforge.net/projects/cmusphinx/files/Acoustic%20and%20Language%20Models/Archive/US%20English%20HUB4WSJ%20Acoustic%20Model/)
 
 Then you need to place its contents in `/usr/local/share/pocketsphinx/model/en-us/en-us`
 
+## Installing PyGTK
+The recognizer.py script in pocketsphinx requires pygtk installed, however a simple
+
+`pip install PyGTK`
+
+will yield,
+```
+Complete output (4 lines):
+    ********************************************************************
+    * Building PyGTK using distutils is only supported on windows. *
+    * To build PyGTK in a supported way, read the INSTALL file.    *
+    ********************************************************************
+```
+So, instead, use:
+
+`sudo apt-get install python-gtk2`
