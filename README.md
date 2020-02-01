@@ -51,8 +51,8 @@ You can download the language model from [here](https://sourceforge.net/projects
 
 Then you need to place its contents in `/usr/local/share/pocketsphinx/model/en-us/en-us`
 
-## Installing PyGTK
-The recognizer.py script in pocketsphinx requires pygtk installed, however a simple
+## Installing PyGTK and Pygst
+The recognizer.py script in pocketsphinx requires pygtk and pygst installed, however a simple
 
 `pip install PyGTK`
 
@@ -67,3 +67,10 @@ Complete output (4 lines):
 So, instead, use:
 
 `sudo apt-get install python-gtk2`
+
+Similarly,
+```
+sudo apt-get install python-gst-1.0
+sudo apt-get install python-gst-1.0-dbg
+sudo apt-get install python-gst0.10
+```
