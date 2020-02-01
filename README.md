@@ -51,26 +51,58 @@ You can download the language model from [here](https://sourceforge.net/projects
 
 Then you need to place its contents in `/usr/local/share/pocketsphinx/model/en-us/en-us`
 
-## Installing PyGTK and Pygst
-The recognizer.py script in pocketsphinx requires pygtk and pygst installed, however a simple
+## ASR Modes
 
-`pip install PyGTK`
+All of the ASR configuration files can be found in `/SpeechRecognition/ros_test/asr`.
 
-will yield,
-```
-Complete output (4 lines):
-    ********************************************************************
-    * Building PyGTK using distutils is only supported on windows. *
-    * To build PyGTK in a supported way, read the INSTALL file.    *
-    ********************************************************************
-```
-So, instead, use:
+There are two modes of operation - *Keyword Spotting* (KWS) and *Language Model* (LM).
 
-`sudo apt-get install python-gtk2`
+### KWS
 
-Similarly,
+Keyword spotting tries to detect specific keywords or phrases, without imposing any type of grammer rules ontop.
+Utilizing keyword spotting requires a .dic file and a .kwslist file.
+
+The dictionary file is a basic text file that contains all the keywords and their phonetic pronunciation, for instance:
+
 ```
-sudo apt-get install python-gst-1.0
-sudo apt-get install python-gst-1.0-dbg
-sudo apt-get install python-gst0.10
+BACK	B AE K
+FORWARD	F AO R W ER D
+FULL	F UH L
 ```
+
+These files can be generated [here](http://www.speech.cs.cmu.edu/tools/lextool.html) . 
+
+The .kwslist file has each keyword and a certain threshold, more or less corresponding to the length of the word or phrase, as follows:
+
+```
+BACK /1e-9/
+FORWARD /1e-25/
+FULL SPEED /1e-20/
+```
+
+### LM
+
+Language model mode additionally imposes a grammer. To utilize this mode, .dic, .lm and .gram files are needed.
+
+The dictionary file is the same as in KWS mode.
+
+The .lm file can be generated, along with the .dic file, from a corpus of text, using [this tool](http://www.speech.cs.cmu.edu/tools/lmtool-new.html)
+
+Finally, the .gram file specifies the grammer to be imposed. For instance, if the commands we are expecting are always an action followed by an object or person and then a location, it might look like:
+
+```
+public <rule> = <actions> [<objects>] [<names>] [<locations>];
+
+<actions> = MOVE | STOP | GET | GIVE
+
+<objects> = BOWL | GLASS
+
+<names> = JOE | JOEBOB
+
+<locations> = KITCHEN | BEDROOM
+
+```
+
+
+
+
