@@ -42,4 +42,8 @@
         <param name="input" value="$(arg input)"/>
     </node>
 
+    <!--Voice Controller Node-->
+    <node name="asr_controller" pkg="ros_test" type="robocup_asr.py">
+    </node>
+
 </launch>
