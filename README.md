@@ -4,9 +4,11 @@ OpenRobotics development for RoboCup @ Home Education Speech recognition and Syn
 ## Setting up the Workspace
 SpeechRecognition is not a workspace, it is a package, so it requires a workspace.
 To setup a catkin workspace, 
-`mkdir -p ~/catkin_ws/src
+```
+mkdir -p ~/catkin_ws/src
 cd catkin_ws
-catkin_make`
+catkin_make
+```
 
 ## Cloning and Catkin_make
 After setting up a workspace, run
@@ -45,11 +47,43 @@ If PocketSphinx isn't installing correctly, try running:
 pip install --upgrade setuptools
 sudo apt-get install libpulse-dev
 ```
+## Installing Turtlebot3
+
+Installing the turtlebot3 package requires 3 seperate repositories (at least to work in Gazebo). I sugggest creating a turtlebot3_ws, as follows,
+
+```
+cd ~/catkin_ws/src
+mkdir -p turtlebot3_ws/src
+cd turtlebot3_ws
+catkin_make
+```
+
+After that, 
+
+```
+cd ~/catkin_ws/src/turtlebot3_ws/src
+git clone https://github.com/ROBOTIS-GIT/turtlebot3.git
+git clone https://github.com/ROBOTIS-GIT/turtlebot3_msgs.git
+git clone https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git
+
+```
+Then, we require a catkin_make in our root workspace,
+
+```
+cd ~/catkin_ws
+catkin_make
+```
+
+Now, you should have access to turtlebot3 in ROS and Gazebo
+
 ## Getting the language model
 
 You can download the language model from [here](https://sourceforge.net/projects/cmusphinx/files/Acoustic%20and%20Language%20Models/Archive/US%20English%20HUB4WSJ%20Acoustic%20Model/)
 
-Then you need to place its contents in `/usr/local/share/pocketsphinx/model/en-us/en-us`
+Then you need to place its contents in `/usr/local/share/pocketsphinx/model/en-us/en-us` . Most likely, these folders dont exist, in which case you should just create them `cd /usr/local/share ; sudo mkdir -p pocketsphinx/model/en-us/en-us`
+
+You can extract the tarball using `sudo tar -xzvf hub4wsj_sc_8k.tar.gz`. Ensure that the contents of the folder hub4wsj_sc_8k are copied or moved to `/usr/local/share/pocketsphinx/model/en-us/en-us`
+
 
 ## ASR Modes
 
@@ -103,6 +137,24 @@ public <rule> = <actions> [<objects>] [<names>] [<locations>];
 
 ```
 
+## Runnning ASR in ROS
+
+So far, two nodes have been made that can be run. One is a KWS mode that controls a turtlebot in Gazebo, and the other is a LM node that just recognizes sentences from a corpus of text.
+
+To run these, make sure you source the `setup.bash` file in the root directory of your workspace, ie,
+
+```
+cd catkin_ws/devel
+source setup.bash
+```
+
+Then, you can run,
+
+`roslaunch ros_test asr_lm.launch`
+
+or
+
+`roslaunch ros_test asr_kws.launch`
 
 
 
