@@ -122,6 +122,8 @@ The dictionary file is the same as in KWS mode.
 
 The .lm file can be generated, along with the .dic file, from a corpus of text, using [this tool](http://www.speech.cs.cmu.edu/tools/lmtool-new.html)
 
+The `generate_corpus.py` script in `SpeechRecognition/asr/resources` sifts through the resource files from robocup's GPSRCmdGenerator and creates a corpus. The .dic and .lm files are generated from it by using the above tool.
+
 Finally, the .gram file specifies the grammer to be imposed. For instance, if the commands we are expecting are always an action followed by an object or person and then a location, it might look like:
 
 ```
