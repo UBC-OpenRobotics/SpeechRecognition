@@ -102,6 +102,9 @@ class CorpusGenerator():
         self.locations = []
         self.gestures = []
         self.questions = []
+
+        #Hardcoded for now
+        self._greetings = [""]
         
     def loadFiles(self,namesFile, objectsFile, locationsFile, gesturesFile, questionsFile):
         namestree = ET.parse(namesFile)
@@ -210,10 +213,11 @@ class CorpusGenerator():
               outFile.write(room.upper()+' | ')
             outFile.write(unique_rooms[-1].upper()+'\n\n')
 
-            outFile.write('<question> = ')
+            #Questions are public
+            outFile.write('public <question> = ')
             for question in self.questions[:-1]:
                 outFile.write(question.getQuestion().upper()+' | ')
-            outFile.write(self.questions[-1].getQuestion().upper()+'\n\n')
+            outFile.write(self.questions[-1].getQuestion().upper()+'{QUESTION}\n\n')
 
 
 
