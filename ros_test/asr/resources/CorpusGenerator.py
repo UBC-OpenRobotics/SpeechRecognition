@@ -13,6 +13,12 @@ class Location():
     
     def getContents(self):
         return self.contents
+
+    def __str__(self):
+        return "location"
+
+    def __repr__(self):
+        return "location"
     
     
 class Object():
@@ -34,6 +40,12 @@ class Object():
     
     def getRoom(self):
         return self.room
+
+    def __str__(self):
+        return "object"
+
+    def __repr__(self):
+        return "object"
     
 
 class Gesture():
@@ -42,6 +54,12 @@ class Gesture():
         
     def getName(self):
         return self.name
+
+    def __str__(self):
+        return "gesture"
+
+    def __repr__(self):
+        return "gesture"
 
 
 class Question():
@@ -55,6 +73,12 @@ class Question():
     def getAnswer(self):
         return self.answer
 
+    def __str__(self):
+        return "question"
+
+    def __repr__(self):
+        return "question"
+
     
 class Name():
     def __init__(self, name):
@@ -62,6 +86,13 @@ class Name():
         
     def getName(self):
         return self.name
+
+    def __str__(self):
+        return "name"
+
+    def __repr__(self):
+        return "name"
+
 
 
 class CorpusGenerator():
@@ -152,5 +183,40 @@ class CorpusGenerator():
             for question in self.questions:
                 outFile.write(question.getQuestion()+'\n')
                 outFile.write(question.getAnswer()+'\n')
-        
-    
+
+    def buildGrammar(self, grammarFile):
+        with open(grammarFile, 'w') as outFile:
+
+            ### Header
+            outFile.write("#JSGF V1.0;\n/**\n* JSGF Grammar\n*/\ngrammar robocup;\n\n")
+            
+            ### Write alternatives
+            for category in [self.names, self.objects, self.gestures]:
+                outFile.write('<%s> = ' % str(category[0]).split('.')[0])
+                for elem in category[:-1]:
+                    outFile.write(elem.getName().upper()+' | ')
+                outFile.write(category[-1].getName().upper()+'\n\n')
+
+
+            #build list of unique rooms
+            unique_rooms = []
+            for category in [self.objects, self.locations]:
+                for elem in category:
+                    if elem.getRoom() not in unique_rooms:
+                        unique_rooms.append(elem.getRoom())
+
+            outFile.write('<room> = ')
+            for room in unique_rooms[:-1]:
+              outFile.write(room.upper()+' | ')
+            outFile.write(unique_rooms[-1].upper()+'\n\n')
+
+            outFile.write('<question> = ')
+            for question in self.questions[:-1]:
+                outFile.write(question.getQuestion().upper()+' | ')
+            outFile.write(self.questions[-1].getQuestion().upper()+'\n\n')
+
+
+
+
+
+
