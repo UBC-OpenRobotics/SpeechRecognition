@@ -37,9 +37,13 @@
         <param name="rule" value="$(arg rule)"/>
     </node>
 
-    <!--Audio Input Nodes -->
+    <!--Audio Input Node -->
     <node name="audio_control" pkg="pocketsphinx" type="send_audio.py">
         <param name="input" value="$(arg input)"/>
+    </node>
+
+    <!--Speech Synthesis Node -->
+    <node name="speech_synthesis" pkg="sound_play" type="soundplay_node.py">
     </node>
 
     <!--Voice Controller Node-->

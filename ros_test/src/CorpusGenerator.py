@@ -137,6 +137,7 @@ class CorpusGenerator():
             answer =  QA.getchildren()[1].text
 
             self.questions.append(Question(question,answer))
+            self.questions_str.append(question)
 
         #extract locations
         #locations are composed of the name of a room and its contents
@@ -219,6 +220,15 @@ class CorpusGenerator():
                 outFile.write(question.getQuestion().upper()+' | ')
             outFile.write(self.questions[-1].getQuestion().upper()+'{QUESTION}\n\n')
 
+    def listQuestions(self):
+        q_arr = [question.getQuestion() for question in self.questions]
+        return q_arr
+
+    def getAnswer(self, question_str):
+        q_arr = self.listQuestions()
+        idx = q_arr.index(question_str)
+        q = self.questions[idx]
+        return q.getAnswer()
 
 
 
