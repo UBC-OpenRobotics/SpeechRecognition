@@ -32,6 +32,11 @@ sudo apt-get install swig
 sudo pip install pocketsphinx
 ```
 
+If you are also using the speech sythesis node, get
+`
+sudo apt-get install ros-melodic-sound-play
+`
+
 Then, to install the ROS package and wrapper,
 ```
 cd ~/catkin_ws/src
