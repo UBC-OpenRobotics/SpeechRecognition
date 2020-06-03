@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<actions>
+	<action>Find</action>
+	<action>Follow</action>
+	<action>Meet</action>
+	<action>Locate</action>
+	<action>Grab</action>
+	<action>Point at</action>
+	<action>Point to</action>
+</actions>
