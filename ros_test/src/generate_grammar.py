@@ -7,9 +7,10 @@ if __name__ == '__main__':
 	locationsFile = '../asr/resources/Locations.xml' 
 	gesturesFile = '../asr/resources/Gestures.xml'
 	questionsFile = '../asr/resources/Questions.xml'
+	actionsFile = '../asr/resources/Actions.xml'
 
 	outFile = '../asr/robocup.gram'
 
 	gramGen = CorpusGenerator()
-	gramGen.loadFiles(namesFile, objectsFile, locationsFile, gesturesFile, questionsFile)
+	gramGen.loadFiles(namesFile, objectsFile, locationsFile, gesturesFile, questionsFile, actionsFile)
 	gramGen.buildGrammar(outFile)
