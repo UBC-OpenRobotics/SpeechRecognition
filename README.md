@@ -32,6 +32,11 @@ sudo apt-get install swig
 sudo pip install pocketsphinx
 ```
 
+If you are also using the speech sythesis node, get
+`
+sudo apt-get install ros-melodic-sound-play
+`
+
 Then, to install the ROS package and wrapper,
 ```
 cd ~/catkin_ws/src
@@ -82,7 +87,7 @@ You can download the language model from [here](https://sourceforge.net/projects
 
 Then you need to place its contents in `/usr/local/share/pocketsphinx/model/en-us/en-us` . Most likely, these folders dont exist, in which case you should just create them `cd /usr/local/share ; sudo mkdir -p pocketsphinx/model/en-us/en-us`
 
-You can extract the tarball using `sudo tar -xzvf hub4wsj_sc_8k.tar.gz`. Ensure that the contents of the folder hub4wsj_sc_8k are copied or moved to `/usr/local/share/pocketsphinx/model/en-us/en-us`
+You can extract the tarball using `sudo tar -xzvf hub4wsj_sc_8k.tar.gz`. Ensure that the contents of the extracted hub4wsj_sc_8k folder are copied or moved to `/usr/local/share/pocketsphinx/model/en-us/en-us`. I.e., the files - `feat.params  mdef  mdef.txt  means  mixture_weights  noisedict  sendump  transition_matrices  variances`- should be in `en-us`
 
 
 ## ASR Modes
