@@ -1,38 +1,21 @@
 <launch>
-    <include file="$(find gazebo_ros)/launch/empty_world.launch">
-        <env name="GAZEBO_RESOURCE_PATH" value="$(find ros_test)"/>
-        <env name="GAZEBO_MODEL_PATH" value="$(find ros_test)/models"/>
-        <arg name="world_name" value="$(find ros_test)/worlds/ros_test.world"/>
-        <arg name="paused" value="true"/>
-        <arg name="use_sim_time" value="true"/>
-        <arg name="gui" value="true"/>
-        <arg name="headless" value="false"/>
-        <arg name="debug" value="false"/>
-    </include>
-
-
     <!--Args-->
     <arg name="input" default=":default"/>
     <arg name="hmm" default=":default" />
-    <arg name="dict" default="$(find ros_test)/asr/robocup.dic"/>
-    <arg name="lm" default="$(find ros_test)/asr/robocup.lm"/>
+    <arg name="dict" default="$(find ros_test)/asr/demo.dic"/>
+    <arg name="lm" default="$(find ros_test)/asr/demo.lm"/>
     <arg name="gram" default=":default"/>
-    <arg name="grammar" default="$(find ros_test)/asr/robocup.gram"/>
+    <arg name="grammar" default="$(find ros_test)/asr/demo.gram"/>
     <arg name="rule" default=":default"/>
     <arg name="namesFile" default=":default"/>
     <arg name="objectsFile" default=":default"/>
     <arg name="locationsFile" default=":default"/>
     <arg name="gesturesFile" default=":default"/>
     <arg name="questionsFile" default=":default"/>
-
-    <!--Turtlebot Parameters-->
-    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_burger.urdf.xacro" />
-
-    <!--Turtlebot Node-->
-    <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" args="-unpause -urdf -model turtlebot3_burger -x 0.0 -y 0.0 -z 0.1 -param robot_description" />
+    <arg name="actionsFile" default=":default"/>
 
     <!--LM Node-->
-    <node name="asr_control" pkg="pocketsphinx" type="asr_test.py" output="screen">
+    <node name="asr_control" pkg="pocketsphinx" type="asr_test.py" >
         <remap from="jsgf_audio" to="sphinx_audio" />
         <param name="lm" value="$(arg lm)"/>
         <param name="dict" value="$(arg dict)"/>
@@ -52,12 +35,13 @@
     </node>
 
     <!--Voice Controller Node-->
-    <node name="asr_controller" pkg="ros_test" type="robocup_asr.py">
+    <node name="demo_controller" pkg="ros_test" type="demo_asr.py" output='screen'>
         <param name="namesFile" value="$(find ros_test)/asr/resources/Names.xml"/>
         <param name="objectsFile" value="$(find ros_test)/asr/resources/Objects.xml"/>
         <param name="locationsFile" value="$(find ros_test)/asr/resources/Locations.xml"/>
         <param name="gesturesFile" value="$(find ros_test)/asr/resources/Gestures.xml"/>
         <param name="questionsFile" value="$(find ros_test)/asr/resources/Questions.xml"/> 
+        <param name="actionsFile" value="$(find ros_test)/asr/resources/Actions.xml"/>
     </node>
 
 </launch>

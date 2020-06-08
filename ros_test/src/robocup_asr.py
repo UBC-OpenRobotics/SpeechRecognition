@@ -3,7 +3,6 @@
 import rospy
 from geometry_msgs.msg import Twist
 from std_msgs.msg import String
-from sound_play.msg import SoundRequest
 from sound_play.libsoundplay import SoundClient
 from CorpusGenerator import CorpusGenerator
 
@@ -13,27 +12,29 @@ class ASRController():
         rospy.init_node('asr_controller')
         self.corpGen = corpGen
         self.soundhandle = SoundClient()
-        self.voice = 'voice_kal_diphone'
+        rospy.sleep(1)
+        self.voice = 'voice_don_diphone'
         self.volume = 1.0
-
 
         rospy.Subscriber('/grammar_data', String, self.parse_speech)
         rospy.spin()
 
     def parse_speech(self, speech_data):
-        if speech_data.data in self.corpGen.listQuestions():
-            answer = self.corpGen.getAnswer(speech_data.data)
-            self.say(answer)
+        if speech_data.data.strip() in self.corpGen.listQuestions():
+            answer = self.corpGen.getAnswer(speech_data.data.strip())
+            rospy.loginfo('[SYNTHESIS] Matched Question')
+            self.say(answer, voice=self.voice)
 
     def say(self, speech):
-        self.soundhandle.say(speech, self.voice, self.volume)
+        self.soundhandle.say(speech)
 
 if __name__ == "__main__":
-    namesFile = '../asr/resources/Names.xml'
-    objectsFile = '../asr/resources/Objects.xml'
-    locationsFile = '../asr/resources/Locations.xml' 
-    gesturesFile = '../asr/resources/Gestures.xml'
-    questionsFile = '../asr/resources/Questions.xml'
+    namesFile = rospy.get_param("/asr_controller/namesFile")
+    objectsFile = rospy.get_param("/asr_controller/objectsFile")
+    locationsFile = rospy.get_param("/asr_controller/locationsFile")
+    gesturesFile = rospy.get_param("/asr_controller/gesturesFile")
+    questionsFile = rospy.get_param("/asr_controller/questionsFile")
     
     corpGen = CorpusGenerator()
+    corpGen.loadFiles(namesFile, objectsFile, locationsFile, gesturesFile, questionsFile)
     ASRController(corpGen)
