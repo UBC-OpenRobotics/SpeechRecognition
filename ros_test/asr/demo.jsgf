@@ -1,0 +1,15 @@
+#JSGF V1.0;
+/**
+* JSGF Grammar
+*/
+grammar robocup;
+
+<name> = ALEX | CHARLIE | ELIZABETH | FRANCIS | JENNIFER | LINDA | MARY | PATRICIA | ROBIN | SKYLER | ALEX | CHARLIE | FRANCIS | JAMES | JOHN | MICHAEL | ROBERT | ROBIN | SKYLER | WILLIAM ;
+
+<drinks> = CHOCOLATE DRINK | COKE | GRAPE JUICE | ORANGE JUICE | SPRITE;
+
+<greeting> = HELLO | HI;
+
+public <introduction> = [ <greeting> ] ( MY NAME IS | I AM ) <name>;
+
+public <get_drink> = [ MY FAVOURITE [ DRINK ] IS | I (LIKE | PREFER) ] <drinks>;

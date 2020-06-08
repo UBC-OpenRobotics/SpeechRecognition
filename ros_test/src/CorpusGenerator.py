@@ -263,7 +263,58 @@ class CorpusGenerator():
             #Actions are public
             outFile.write('public <act> = <action> ([<name>]|[<object>]|[<room>]) ;\n')
 
+    def generateDemoCorpus(self, outputPath):
+        with open(outputPath, 'w') as outFile:
+            for name in self.names:
+                outFile.write(name.getName()+'\n')
 
+            for obj in self.objects:
+                if obj.getCategory() == 'drinks':
+                    outFile.write(obj.getName()+'\n')
+
+            for gesture in self.gestures:
+                outFile.write(gesture.getName()+'\n')
+
+            for action in self.actions:
+                outFile.write(action.getName()+'\n')
+
+    def buildDemoGrammar(self, grammarFile):
+        with open(grammarFile, 'w') as outFile:
+
+            ### Header
+            outFile.write("#JSGF V1.0;\n/**\n* JSGF Grammar\n*/\ngrammar demo;\n\n")
+            
+            ### Write alternatives
+            for category in [self.names, self.gestures, self.actions]:
+                outFile.write('<%s> = ' % str(category[0]).split('.')[0])
+                for elem in category[:-1]:
+                    outFile.write(elem.getName().upper()+' | ')
+                outFile.write(category[-1].getName().upper()+'\n\n')
+
+            ### Write drinks
+            outFile.write('<drinks> = ')
+            size = len(self.objects)
+            for i,obj in enumerate(self.objects):
+                if obj.getCategory() == 'drinks':
+                    if i < size-1:
+                        outFile.write(elem.getName().upper()+' | ')
+                    else:
+                        outFile.write(elem.getName().upper()+'\n\n')
+
+
+            #build catagory dict
+            # category = self.generate_category_dict()
+
+            # #Write categories to file
+            # for key in category.keys():
+            #     outFile.write('<%s> = ' % key)
+
+            #     for obj in category.get(key)[:-1]:
+            #         outFile.write(obj.upper()+' | ')
+            #     outFile.write(category.get(key)[-1].upper()+'\n\n')
+
+            #Actions are public
+            outFile.write('public <act> = <action> ([<name>]|[<object>]|[<room>]) ;\n')
 
     def listQuestions(self):
         q_arr = [question.getQuestion() for question in self.questions]
