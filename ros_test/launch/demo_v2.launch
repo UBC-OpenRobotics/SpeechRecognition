@@ -1,0 +1,47 @@
+<launch>
+    <!--Args-->
+    <arg name="input" default=":default"/>
+    <arg name="hmm" default=":default" />
+    <arg name="dict" default="$(find ros_test)/asr/demo.dic"/>
+    <arg name="lm" default="$(find ros_test)/asr/demo.lm"/>
+    <arg name="gram" default=":default"/>
+    <arg name="grammar" default="$(find ros_test)/asr/demo.gram"/>
+    <arg name="rule" default=":default"/>
+    <arg name="namesFile" default=":default"/>
+    <arg name="objectsFile" default=":default"/>
+    <arg name="locationsFile" default=":default"/>
+    <arg name="gesturesFile" default=":default"/>
+    <arg name="questionsFile" default=":default"/>
+    <arg name="actionsFile" default=":default"/>
+
+    <!--LM Node-->
+    <node name="asr_control" pkg="pocketsphinx" type="asr_test.py" >
+        <remap from="jsgf_audio" to="sphinx_audio" />
+        <param name="lm" value="$(arg lm)"/>
+        <param name="dict" value="$(arg dict)"/>
+        <param name="hmm" value="$(arg hmm)"/>
+        <param name="gram" value="$(arg gram)"/>
+        <param name="grammar" value="$(arg grammar)"/>
+        <param name="rule" value="$(arg rule)"/>
+    </node>
+
+    <!--Audio Input Node -->
+    <node name="audio_control" pkg="pocketsphinx" type="send_audio.py">
+        <param name="input" value="$(arg input)"/>
+    </node>
+
+    <!--Speech Synthesis Node -->
+    <node name="speech_synthesis" pkg="sound_play" type="soundplay_node.py">
+    </node>
+
+    <!--Voice Controller Node-->
+    <node name="demo_controller" pkg="ros_test" type="demo_asr_v2.py" output='screen'>
+        <param name="namesFile" value="$(find ros_test)/asr/resources/Names.xml"/>
+        <param name="objectsFile" value="$(find ros_test)/asr/resources/Objects.xml"/>
+        <param name="locationsFile" value="$(find ros_test)/asr/resources/Locations.xml"/>
+        <param name="gesturesFile" value="$(find ros_test)/asr/resources/Gestures.xml"/>
+        <param name="questionsFile" value="$(find ros_test)/asr/resources/Questions.xml"/> 
+        <param name="actionsFile" value="$(find ros_test)/asr/resources/Actions.xml"/>
+    </node>
+
+</launch>

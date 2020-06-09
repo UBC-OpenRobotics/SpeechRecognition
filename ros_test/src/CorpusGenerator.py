@@ -330,6 +330,10 @@ class CorpusGenerator():
         q = self.questions[idx]
         return q.getAnswer()
 
+    def listActions(self):
+        actions = [action.getName() for action in self.actions]
+        return actions
+
 
 
 
