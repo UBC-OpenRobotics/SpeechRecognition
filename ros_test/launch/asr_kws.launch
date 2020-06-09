@@ -23,7 +23,7 @@
     <arg name="threshold" default=":default"/>
 
     <!--Turtlebot Parameters-->
-    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot_arm_description)/urdf/turtlebot_arm.urdf.xacro" />
+    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_modified_burger.urdf.xacro" />
 
     <!--Turtlebot Node-->
     <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" args="-unpause -urdf -model turtlebot3_burger -x 0.0 -y 0.0 -z 0.1 -param robot_description" />
