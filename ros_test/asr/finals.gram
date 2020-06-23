@@ -10,3 +10,6 @@ grammar finals;
 
 public <ask> = (CAN I | I WANT TO) PLACE AN ORDER;
 public <order> = [(MY NAME IS | I AM)] <name> [AND] [(AND I WOULD LIKE | I WANT)] <food>;
+public <confirm> = (YES | NO);
+public <order_ready> = ORDER [(READY | DONE)] FOR <name>;
+public <leaving> = (GOODBYE | BYE);

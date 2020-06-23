@@ -86,6 +86,13 @@ class FinalsCorpusGenerator():
 
             outFile.write('public <order> = [(MY NAME IS | I AM)] <name> [AND] [(AND I WOULD LIKE | I WANT)] <food>;\n')
 
+            outFile.write('public <confirm> = (YES | NO);\n')
+
+            outFile.write('public <order_ready> = ORDER [(READY | DONE)] FOR <name>;\n')
+
+            outFile.write('public <leaving> = (GOODBYE | BYE);\n')
+
+
 
     def listFood(self):
         food_arr = [food.getName() for food in self.food]
