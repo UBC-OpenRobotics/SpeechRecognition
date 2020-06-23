@@ -1,4 +1,4 @@
-Language model created by QuickLM on Mon Jun 22 22:05:24 EDT 2020
+Language model created by QuickLM on Mon Jun 22 23:09:47 EDT 2020
 Copyright (c) 1996-2010 Carnegie Mellon University and Alexander I. Rudnicky
 
 The model is in standard ARPA format, designed by Doug Paul while he was at MITRE.
@@ -7,78 +7,82 @@ The code that was used to produce this language model is available in Open Sourc
 Please visit http://www.speech.cs.cmu.edu/tools/ for more information
 
 The (fixed) discount mass is 0.5. The backoffs are computed using the ratio method.
-This model based on a corpus of 30 sentences and 32 words
+This model based on a corpus of 32 sentences and 34 words
 
 \data\
-ngram 1=32
-ngram 2=60
-ngram 3=30
+ngram 1=34
+ngram 2=64
+ngram 3=32
 
 \1-grams:
 -0.7782 </s> -0.3010
 -0.7782 <s> -0.2218
--2.2553 AM -0.2218
--2.2553 AN -0.2218
--2.2553 AND -0.2218
--2.2553 ANDREW -0.2218
--2.2553 BYE -0.2218
--2.2553 CAN -0.2218
--2.2553 CHICKEN -0.2218
--2.2553 DONE -0.2218
--2.2553 FOR -0.2218
--2.2553 FRANCISCO -0.2218
--2.2553 GOODBYE -0.2218
--2.2553 I -0.2218
--2.2553 IS -0.2218
--2.2553 LIKE -0.2218
--2.2553 MY -0.2218
--2.2553 NAME -0.2218
--2.2553 NICK -0.2218
--2.2553 ORDER -0.2218
--2.2553 OSMAN -0.2218
--2.2553 PASTA -0.2218
--2.2553 PLACE -0.2218
--2.2553 READY -0.2218
--2.2553 RICE -0.2218
--2.2553 SALAD -0.2218
--2.2553 SPAGHETTI -0.2218
--2.2553 STEAK -0.2218
--2.2553 TO -0.2218
--2.2553 WANT -0.2218
--2.2553 WATER -0.2218
--2.2553 WOULD -0.2218
+-2.2833 AM -0.2218
+-2.2833 AN -0.2218
+-2.2833 AND -0.2218
+-2.2833 ANDREW -0.2218
+-2.2833 BYE -0.2218
+-2.2833 CAN -0.2218
+-2.2833 CHICKEN -0.2218
+-2.2833 DONE -0.2218
+-2.2833 FOR -0.2218
+-2.2833 FRANCISCO -0.2218
+-2.2833 GOODBYE -0.2218
+-2.2833 I -0.2218
+-2.2833 IS -0.2218
+-2.2833 LIKE -0.2218
+-2.2833 MY -0.2218
+-2.2833 NAME -0.2218
+-2.2833 NICK -0.2218
+-2.2833 NO -0.2218
+-2.2833 ORDER -0.2218
+-2.2833 OSMAN -0.2218
+-2.2833 PASTA -0.2218
+-2.2833 PLACE -0.2218
+-2.2833 READY -0.2218
+-2.2833 RICE -0.2218
+-2.2833 SALAD -0.2218
+-2.2833 SPAGHETTI -0.2218
+-2.2833 STEAK -0.2218
+-2.2833 TO -0.2218
+-2.2833 WANT -0.2218
+-2.2833 WATER -0.2218
+-2.2833 WOULD -0.2218
+-2.2833 YES -0.2218
 
 \2-grams:
--1.7782 <s> AM 0.0000
--1.7782 <s> AN 0.0000
--1.7782 <s> AND 0.0000
--1.7782 <s> ANDREW 0.0000
--1.7782 <s> BYE 0.0000
--1.7782 <s> CAN 0.0000
--1.7782 <s> CHICKEN 0.0000
--1.7782 <s> DONE 0.0000
--1.7782 <s> FOR 0.0000
--1.7782 <s> FRANCISCO 0.0000
--1.7782 <s> GOODBYE 0.0000
--1.7782 <s> I 0.0000
--1.7782 <s> IS 0.0000
--1.7782 <s> LIKE 0.0000
--1.7782 <s> MY 0.0000
--1.7782 <s> NAME 0.0000
--1.7782 <s> NICK 0.0000
--1.7782 <s> ORDER 0.0000
--1.7782 <s> OSMAN 0.0000
--1.7782 <s> PASTA 0.0000
--1.7782 <s> PLACE 0.0000
--1.7782 <s> READY 0.0000
--1.7782 <s> RICE 0.0000
--1.7782 <s> SALAD 0.0000
--1.7782 <s> SPAGHETTI 0.0000
--1.7782 <s> STEAK 0.0000
--1.7782 <s> TO 0.0000
--1.7782 <s> WANT 0.0000
--1.7782 <s> WATER 0.0000
--1.7782 <s> WOULD 0.0000
+-1.8062 <s> AM 0.0000
+-1.8062 <s> AN 0.0000
+-1.8062 <s> AND 0.0000
+-1.8062 <s> ANDREW 0.0000
+-1.8062 <s> BYE 0.0000
+-1.8062 <s> CAN 0.0000
+-1.8062 <s> CHICKEN 0.0000
+-1.8062 <s> DONE 0.0000
+-1.8062 <s> FOR 0.0000
+-1.8062 <s> FRANCISCO 0.0000
+-1.8062 <s> GOODBYE 0.0000
+-1.8062 <s> I 0.0000
+-1.8062 <s> IS 0.0000
+-1.8062 <s> LIKE 0.0000
+-1.8062 <s> MY 0.0000
+-1.8062 <s> NAME 0.0000
+-1.8062 <s> NICK 0.0000
+-1.8062 <s> NO 0.0000
+-1.8062 <s> ORDER 0.0000
+-1.8062 <s> OSMAN 0.0000
+-1.8062 <s> PASTA 0.0000
+-1.8062 <s> PLACE 0.0000
+-1.8062 <s> READY 0.0000
+-1.8062 <s> RICE 0.0000
+-1.8062 <s> SALAD 0.0000
+-1.8062 <s> SPAGHETTI 0.0000
+-1.8062 <s> STEAK 0.0000
+-1.8062 <s> TO 0.0000
+-1.8062 <s> WANT 0.0000
+-1.8062 <s> WATER 0.0000
+-1.8062 <s> WOULD 0.0000
+-1.8062 <s> YES 0.0000
 -0.3010 AM </s> -0.3010
 -0.3010 AN </s> -0.3010
 -0.3010 AND </s> -0.3010
@@ -96,6 +100,7 @@ ngram 3=30
 -0.3010 MY </s> -0.3010
 -0.3010 NAME </s> -0.3010
 -0.3010 NICK </s> -0.3010
+-0.3010 NO </s> -0.3010
 -0.3010 ORDER </s> -0.3010
 -0.3010 OSMAN </s> -0.3010
 -0.3010 PASTA </s> -0.3010
@@ -109,6 +114,7 @@ ngram 3=30
 -0.3010 WANT </s> -0.3010
 -0.3010 WATER </s> -0.3010
 -0.3010 WOULD </s> -0.3010
+-0.3010 YES </s> -0.3010
 
 \3-grams:
 -0.3010 <s> AM </s>
@@ -128,6 +134,7 @@ ngram 3=30
 -0.3010 <s> MY </s>
 -0.3010 <s> NAME </s>
 -0.3010 <s> NICK </s>
+-0.3010 <s> NO </s>
 -0.3010 <s> ORDER </s>
 -0.3010 <s> OSMAN </s>
 -0.3010 <s> PASTA </s>
@@ -141,5 +148,6 @@ ngram 3=30
 -0.3010 <s> WANT </s>
 -0.3010 <s> WATER </s>
 -0.3010 <s> WOULD </s>
+-0.3010 <s> YES </s>
 
 \end\

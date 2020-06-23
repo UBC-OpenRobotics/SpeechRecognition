@@ -1,0 +1,50 @@
+<launch>
+    <!--Args-->
+    <arg name="input" default=":default"/>
+    <arg name="hmm" default=":default" />
+    <arg name="dict" default="$(find ros_test)/asr/finals.dic"/>
+    <arg name="lm" default="$(find ros_test)/asr/finals.lm"/>
+    <arg name="gram" default=":default"/>
+    <arg name="grammar" default="$(find ros_test)/asr/finals.gram"/>
+    <arg name="rule" default=":default"/>
+    <arg name="namesFile" default=":default"/>
+    <arg name="objectsFile" default=":default"/>
+    <arg name="locationsFile" default=":default"/>
+    <arg name="gesturesFile" default=":default"/>
+    <arg name="questionsFile" default=":default"/>
+    <arg name="actionsFile" default=":default"/>
+
+    <!--LM Node-->
+    <node name="asr_control" pkg="pocketsphinx" type="asr_test.py" >
+        <remap from="jsgf_audio" to="sphinx_audio" />
+        <param name="lm" value="$(arg lm)"/>
+        <param name="dict" value="$(arg dict)"/>
+        <param name="hmm" value="$(arg hmm)"/>
+        <param name="gram" value="$(arg gram)"/>
+        <param name="grammar" value="$(arg grammar)"/>
+        <param name="rule" value="$(arg rule)"/>
+    </node>
+
+    <!--Audio Input Node -->
+    <node name="audio_control" pkg="pocketsphinx" type="send_audio.py">
+        <param name="input" value="$(arg input)"/>
+    </node>
+
+    <!--Audio Filter Node
+    <node name="audio_filter" pkg="ros_test" type="noise_filter.py">
+        <param name="noise_file" value="$(find ros_test)/src/background_noise.wav"/>
+    </node>
+-->
+
+    <!--Speech Synthesis Node -->
+    <node name="speech_synthesis" pkg="sound_play" type="soundplay_node.py">
+    </node>
+
+    <!--Voice Controller Node-->
+    <node name="demo_controller" pkg="ros_test" type="finals_asr.py" output="screen">
+        <param name="namesFile" value="$(find ros_test)/asr/resources_finals/Names.xml"/>
+        <param name="foodFile" value="$(find ros_test)/asr/resources_finals/Food.xml"/>
+        <param name="fillerFile" value="$(find ros_test)/asr/resources_finals/filler.txt"/>
+    </node>
+
+</launch>

@@ -84,11 +84,11 @@ class FinalsCorpusGenerator():
             ### GRAMMAR RULES ###
             outFile.write('public <ask> = (CAN I | I WANT TO) PLACE AN ORDER;\n')
 
-            outFile.write('public <order> = [(MY NAME IS | I AM)] <name> [AND] [(AND I WOULD LIKE | I WANT)] <food>;\n')
+            outFile.write('public <order> = ( [MY NAME IS] | [I AM] ) <name> [AND] ( [AND I WOULD LIKE] | [I WANT] ) <food>;\n')
 
             outFile.write('public <confirm> = (YES | NO);\n')
 
-            outFile.write('public <order_ready> = ORDER [(READY | DONE)] FOR <name>;\n')
+            outFile.write('public <order_ready> = ORDER ( [READY] | [DONE] ) FOR <name>;\n')
 
             outFile.write('public <leaving> = (GOODBYE | BYE);\n')
 

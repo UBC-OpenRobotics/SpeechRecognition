@@ -9,7 +9,7 @@ grammar finals;
 <food> = CHICKEN | RICE | PASTA | STEAK | SALAD | WATER | SPAGHETTI
 
 public <ask> = (CAN I | I WANT TO) PLACE AN ORDER;
-public <order> = [(MY NAME IS | I AM)] <name> [AND] [(AND I WOULD LIKE | I WANT)] <food>;
+public <order> = ( [MY NAME IS] | [I AM] ) <name> [AND] ( [AND I WOULD LIKE] | [I WANT] ) <food>;
 public <confirm> = (YES | NO);
-public <order_ready> = ORDER [(READY | DONE)] FOR <name>;
+public <order_ready> = ORDER ( [READY] | [DONE] ) FOR <name>;
 public <leaving> = (GOODBYE | BYE);
