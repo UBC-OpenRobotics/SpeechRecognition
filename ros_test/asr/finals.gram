@@ -1,0 +1,12 @@
+#JSGF V1.0;
+/**
+* JSGF Grammar
+*/
+grammar finals;
+
+<name> = NICK | OSMAN | FRANCISCO | ANDREW
+
+<food> = CHICKEN | RICE | PASTA | STEAK | SALAD | WATER | SPAGHETTI
+
+public <ask> = (CAN I | I WANT TO) PLACE AN ORDER;
+public <order> = [(MY NAME IS | I AM)] <name> [AND] [(AND I WOULD LIKE | I WANT)] <food>;
