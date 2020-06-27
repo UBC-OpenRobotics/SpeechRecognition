@@ -6,6 +6,7 @@ from std_msgs.msg import String
 from sound_play.libsoundplay import SoundClient
 from FinalsCorpusGenerator import FinalsCorpusGenerator
 import json
+import time
 
 class FinalsController():
 
@@ -80,12 +81,10 @@ class FinalsController():
             self.words = words
 
     def speak(self, speech):
-        #Get average time to speak
-        time = max(1, 0.2*(len(speech)))
 
         rospy.loginfo("[SPEAKING] %s" % (speech))
-        self.soundhandle.say(speech)
-        rospy.sleep(time)
+        self.soundhandle.say(speech, blocking=True)
+        rospy.loginfo("[DONE SPEAKING]")
 
     def waitRequest(self):
         ### WAIT FOR REQUEST ###
@@ -109,9 +108,9 @@ class FinalsController():
     def mainloop(self):
 
         ### GET NAME AND ORDER ###
-        bundle = "CERTAINLY"
-        self.speak(bundle)
-        bundle = "CAN I HAVE YOUR NAME AND ORDER PLEASE"
+        # bundle = "CERTAINLY"
+        # self.speak(bundle)
+        bundle = "CERTAINLY, CAN I HAVE YOUR NAME AND ORDER PLEASE"
         self.speak(bundle)
 
         #Wait for reply
@@ -152,11 +151,11 @@ class FinalsController():
         self.talking = True
         self.waitingForReply = False
 
-        bundle = 'YOUR NAME IS %s, AND YOU WANT TO ORDER %s' %(self.current_name, self.orders[self.current_name])
+        bundle = 'YOUR NAME IS %s, AND YOU WANT TO ORDER %s, IS THIS CORRECT?' %(self.current_name, self.orders[self.current_name])
         self.speak(bundle)
 
-        bundle = 'IS THIS CORRECT?'
-        self.speak(bundle)
+        # bundle = 'IS THIS CORRECT?'
+        # self.speak(bundle)
 
         self.talking = False
         self.waitingForReply = True
